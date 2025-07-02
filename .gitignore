@@ -1,0 +1,48 @@
+# Root-level .gitignore
+# ---------------------
+# Ignore environment files
+.env
+.env.*
+
+
+# Ignore logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Node modules
+**/node_modules/
+**/dist/
+**/build/
+
+# Ignore compiled and cache files
+**/.cache/
+**/.next/
+**/.turbo/
+**/.eslintcache
+
+# Ignore test coverage output
+**/coverage/
+
+# Ignore IDE/editor folders
+.vscode/
+.idea/
+
+# Ignore local databases and generated files
+**/db/*.sqlite
+**/db/*.sqlite3
+
+# Ignore uploads or temp folders (if any)
+**/uploads/
+**/tmp/
+**/temp/
+
+# Optional: Ignore PostgreSQL dump files
+*.dump
+*.sql
