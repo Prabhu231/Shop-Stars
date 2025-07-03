@@ -32,7 +32,7 @@ const registerUser = async ({ name, email, password, address }) => {
 
     return { success: true, message: "User registered successfully" };
   } catch (err) {
-    console.error("Register error:", err);
+    console.log("Register error:", err);
     return { success: false, message: "Server error during registration" };
   }
 };

@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
@@ -72,18 +75,13 @@ export default function LoginPage() {
     if (!hasErrors) {
       setIsLoading(true);
       try {
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        // For demo purposes - you would replace this with actual API call
-        if (
-          formData.email === "test@example.com" &&
-          formData.password === "password"
-        ) {
-          alert("Login successful!");
-          // Handle successful login (e.g., store token, redirect)
-        } else {
-          setErrors({ general: "Invalid email or password" });
+        const res = await axios.post(
+          `${process.env.REACT_APP_BACKEND_URL}/login`,
+          formData
+        );
+        if (res.data && res.data.token) {
+          localStorage.setItem("token", res.data.token);
+          navigate("/dashboard");
         }
       } catch (err) {
         setErrors({ general: "Login failed. Please try again." });
